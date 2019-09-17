@@ -8,7 +8,7 @@ domain = 'https://www.hurriyetemlak.com'
 current_home = {}
 all_homes = []
 
-def start():
+def start(lb,ub):
     for i in range(lb,ub):
         print('2') 
         sauce = urllib.request.urlopen(domain +'/kiralik-sahibinden?page=' + str(i)).read()

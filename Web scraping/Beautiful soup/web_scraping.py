@@ -10,15 +10,11 @@ all_homes = []
 
 def start(lb,ub):
     for i in range(lb,ub):
-        print('2') 
         sauce = urllib.request.urlopen(domain +'/kiralik-sahibinden?page=' + str(i)).read()
         soup = bs.BeautifulSoup(sauce,'lxml')
         list_of_home = soup.find('div' , id='listview')
         links = list_of_home.find_all('a' , class_='overlay-link') 
         for a in links:
-            print('5')
-            print(a.get('href'))
-            
             res =  requests.get(domain + a.get('href'))
             if res.status_code == 200:
                 sauce_2 = urllib.request.urlopen(domain + a.get('href')).read()
@@ -47,10 +43,6 @@ def start(lb,ub):
                 all_homes.append(current_home.copy())
             if res.status_code == 404:
                 all_homes.append(current_home.copy())    
-                print('Acces denied')
-                        
-    
-
     tocsv()
 
 def tocsv():
